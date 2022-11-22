@@ -14,7 +14,7 @@ test('test if a ship is sunk when hits is equal to length of ship', () => {
   for(let i = 0; i < 7; i++) {
     testShip.hit();
   }
-  expect(testShip.isSunk()).toBeTruthy();
+  expect(testShip.isSunk()).toBe(1);
 });
 
 test('test if a ship is not sunk when hits is less than length of ship', () => {
@@ -22,5 +22,5 @@ test('test if a ship is not sunk when hits is less than length of ship', () => {
   for(let i = 0; i < 5; i++) {
     testShip.hit();
   }
-  expect(testShip.isSunk()).toBeFalsy();
+  expect(testShip.isSunk()).toBe(0);
 });

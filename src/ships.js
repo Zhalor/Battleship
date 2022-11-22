@@ -1,23 +1,19 @@
 function ship(length) {
-  let sunk = false;
+  let sunk = 0;
   let hits = 0;
 
   const hit = () => {
     ++hits;
     if(hits === length) {
-      sunk = true;
+      ++sunk;
     }
   };
 
   const showHits = () => hits;
 
-  const isSunk = () => {
-    return sunk;
-  }
-  
+  const isSunk = () => sunk;
+
   return { hit, length, showHits, isSunk };
 }
-
-
 
 export { ship };

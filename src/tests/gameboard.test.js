@@ -80,3 +80,68 @@ test('test Battleship ship will not be placed if vertical cells are too few', ()
   expect(board.coordinates.g1).toMatch("");
   expect(board.coordinates.h1).toMatch("");
 });
+
+//hit tests
+test('test hit count increasing when hitting a Battleship when all ships are placed', () => {
+  const board = gameBoard();
+  board.placeCarrier('b4', false);
+  board.placeBattleship('e1', false);
+  board.placeCruiser('e7', true);
+  board.placeSubmarine('h3', false);
+  board.placeDestroyer('a2', true);
+  board.receiveAttack('e1');
+  board.receiveAttack('e2');
+  expect(board.ships[1].showHits()).toBe(2);
+});
+
+test('test board cell equals miss on no ship is hit', () => {
+  const board = gameBoard();
+  board.placeCarrier('b4', false);
+  board.placeBattleship('e1', false);
+  board.placeCruiser('e7', true);
+  board.placeSubmarine('h3', false);
+  board.placeDestroyer('a2', true);
+  board.receiveAttack('a4');
+  expect(board.coordinates.a4).toMatch('miss');
+});
+
+//ship sunk tests
+test('test ship is sunk when hit counter equals length of ship', () => {
+  const board = gameBoard();
+  board.placeCarrier('b4', false);
+  board.placeBattleship('e1', false);
+  board.placeCruiser('e7', true);
+  board.placeSubmarine('h3', false);
+  board.placeDestroyer('a2', true);
+  board.receiveAttack('e1');
+  board.receiveAttack('e2');
+  board.receiveAttack('e3');
+  board.receiveAttack('e4');
+  expect(board.ships[1].isSunk()).toBe(1);
+});
+
+test('test gameboard reports all ships sunk', () => {
+  const board = gameBoard();
+  board.placeCarrier('b4', false);
+  board.placeBattleship('e1', false);
+  board.placeCruiser('e7', true);
+  board.placeSubmarine('h3', false);
+  board.placeDestroyer('a2', true);
+  board.receiveAttack('e1');
+  board.receiveAttack('e2');
+  board.receiveAttack('e3');
+  board.receiveAttack('e4');
+  board.receiveAttack('b4');
+  board.receiveAttack('b5');
+  board.receiveAttack('b6');
+  board.receiveAttack('b7');
+  board.receiveAttack('b8');
+  board.receiveAttack('e7');
+  board.receiveAttack('f7');
+  board.receiveAttack('g7');
+  board.receiveAttack('h3');
+  board.receiveAttack('h4');
+  board.receiveAttack('h5');
+  board.receiveAttack('a2');
+  expect(board.receiveAttack('b2')).toBeTruthy();
+});
