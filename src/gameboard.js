@@ -72,10 +72,11 @@ function gameBoard() {
 
   const placeCarrier = (coords, vertical) => {
     const carrier = ship(5);
-    const [letter, num] = coords.split('');
+    let [letter, num] = coords.split('');
+    num = Number(num);
 
     if(vertical === false) {
-      if((Number(num) + carrier.length) < 10) {
+      if((num + carrier.length) < 10) {
         for(let i = num; i < num + carrier.length; i++) {
           coordinates[letter + i] = 'carrier';
         }
@@ -95,10 +96,11 @@ function gameBoard() {
   
   const placeBattleship = (coords, vertical) => {
     const battleship = ship(4);
-    const [letter, num] = coords.split('');
+    let [letter, num] = coords.split('');
+    num = Number(num);
 
     if(vertical === false) {
-      if((Number(num) + battleship.length) < 10) {
+      if((num + battleship.length) < 10) {
         for(let i = num; i < num + battleship.length; i++) {
           coordinates[letter + i] = 'battleship';
         }
@@ -118,10 +120,11 @@ function gameBoard() {
 
   const placeCruiser = (coords, vertical) => {
     const cruiser = ship(3);
-    const [letter, num] = coords.split('');
+    let [letter, num] = coords.split('');
+    num = Number(num);
 
     if(vertical === false) {
-      if((Number(num) + cruiser.length) < 10) {
+      if((num + cruiser.length) < 10) {
         for(let i = num; i < num + cruiser.length; i++) {
           coordinates[letter + i] = 'cruiser';
         }
@@ -141,10 +144,11 @@ function gameBoard() {
 
   const placeSubmarine = (coords, vertical) => {
     const submarine = ship(3);
-    const [letter, num] = coords.split('');
+    let [letter, num] = coords.split('');
+    num = Number(num);
 
     if(vertical === false) {
-      if((Number(num) + submarine.length) < 10) {
+      if((num + submarine.length) < 10) {
         for(let i = num; i < num + submarine.length; i++) {
           coordinates[letter + i] = 'submarine';
         }
@@ -164,10 +168,11 @@ function gameBoard() {
 
   const placeDestroyer = (coords, vertical) => {
     const destroyer = ship(2);
-    const [letter, num] = coords.split('');
+    let [letter, num] = coords.split('');
+    num = Number(num);
 
     if(vertical === false) {
-      if((Number(num) + destroyer.length) < 10) {
+      if((num + destroyer.length) < 10) {
         for(let i = num; i < num + destroyer.length; i++) {
           coordinates[letter + i] = 'destroyer';
         }
@@ -191,7 +196,6 @@ function gameBoard() {
     } else {
       coordinates[coords] = 'miss';
     }
-
     return checkAllShipsSunk();
   }
 
