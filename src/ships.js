@@ -1,4 +1,4 @@
-function ship(length) {
+function ship(name, length) {
   let sunk = 0;
   let hits = 0;
 
@@ -13,7 +13,7 @@ function ship(length) {
 
   const isSunk = () => sunk;
 
-  return { hit, length, showHits, isSunk };
+  return { name, hit, length, showHits, isSunk };
 }
 
 export { ship };

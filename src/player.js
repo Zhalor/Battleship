@@ -1,8 +1,4 @@
-import { gameBoard } from "./gameboard"
-
-const board = gameBoard();
-
-const player = () => {
+const player = (name) => {
 
   const movesMade = {};
 
@@ -12,7 +8,7 @@ const player = () => {
       coords = generateCoordinate();
     }
     movesMade[coords] = true;
-    board.receiveAttack(coords);
+    return coords;
   }
 
   const generateCoordinate = () => {
@@ -21,7 +17,7 @@ const player = () => {
     return letter.concat(num);
   }
 
-  return { makeMove, movesMade }
+  return { makeMove, movesMade, name }
 }
 
 export { player };

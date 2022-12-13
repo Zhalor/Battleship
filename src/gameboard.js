@@ -71,7 +71,7 @@ function gameBoard() {
   const ships = [];
 
   const placeCarrier = (coords, vertical) => {
-    const carrier = ship(5);
+    const carrier = ship('carrier', 5);
     let [letter, num] = coords.split('');
     num = Number(num);
 
@@ -95,7 +95,7 @@ function gameBoard() {
   }
   
   const placeBattleship = (coords, vertical) => {
-    const battleship = ship(4);
+    const battleship = ship('battleship', 4);
     let [letter, num] = coords.split('');
     num = Number(num);
 
@@ -119,7 +119,7 @@ function gameBoard() {
   }
 
   const placeCruiser = (coords, vertical) => {
-    const cruiser = ship(3);
+    const cruiser = ship('cruiser', 3);
     let [letter, num] = coords.split('');
     num = Number(num);
 
@@ -143,7 +143,7 @@ function gameBoard() {
   }
 
   const placeSubmarine = (coords, vertical) => {
-    const submarine = ship(3);
+    const submarine = ship('submarine', 3);
     let [letter, num] = coords.split('');
     num = Number(num);
 
@@ -167,7 +167,7 @@ function gameBoard() {
   }
 
   const placeDestroyer = (coords, vertical) => {
-    const destroyer = ship(2);
+    const destroyer = ship('destroyer', 2);
     let [letter, num] = coords.split('');
     num = Number(num);
 
