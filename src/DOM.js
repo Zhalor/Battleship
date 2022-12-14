@@ -1,6 +1,3 @@
-import { ship } from "./ships";
-import { gameBoard } from "./gameboard";
-
 const startGameBtn = document.getElementById('start-game');
 const titleContainer = document.getElementById('title-container');
 

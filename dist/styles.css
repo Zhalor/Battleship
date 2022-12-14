@@ -10,26 +10,32 @@
   --teal: #087E8B;
 }
 
-.title-header {
-  text-align: center;
-  margin: 60px 0px;
-  font-size: 3rem;
-  color: var(--dark-blue);
-}
-
 .title-container {
-  margin-top: 120px;
+  margin-top: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   color: var(--dark-green);
-  font-size: 1.6rem;
+  font-size: 2rem;
+}
+
+.title-header {
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 4.5rem;
+  color: var(--dark-blue);
+}
+
+.title-container > p {
+  font-weight: 700;
 }
 
 .player-name-input {
   outline: none;
-  padding: 5px;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 8px;
   border: 2px solid var(--dark-green);
   border-radius: 3px;
   transition: border-color .25s;
@@ -41,8 +47,8 @@
 }
 
 .start-game {
-  margin-top: 116px;
-  font-size: 1.6rem;
+  margin-top: 80px;
+  font-size: 1.8rem;
   padding: 18px;
   border-radius: 3px;
   color: white;
@@ -61,4 +67,58 @@
 
 .start-game:active {
   transform: scale(.9);
+}
+
+
+.game-header {
+  background-color: var(--teal);
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.game-header > p {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 30px 0px;
+  
+}
+
+.player-gameboard {
+
+}
+
+.numbers {
+  display: flex;
+  margin-left: 50px;
+
+}
+
+.numbers > p{
+  height: 50px;
+  width: 50px;
+}
+
+.letters {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.letters > p {
+  height: 50px;
+  width: 50px;
+}
+
+.grid {
+  display: grid;
+  grid-template: repeat(8, 50px) / repeat(8, 50px);
+
+}
+
+.cell {
+  border: 1px solid black;
 }
