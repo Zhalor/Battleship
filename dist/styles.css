@@ -2,6 +2,7 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -72,45 +73,48 @@
 
 .game-header {
   background-color: var(--teal);
-  display: flex;
-  justify-content: space-around;
+  display: none;
+  grid-template-columns: 50vw 50vw;
+  justify-items: center;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
 }
 
 .game-header > p {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   padding: 30px 0px;
   
 }
 
-.player-gameboard {
-
+.game-container {
+  display: none;
+  grid-template-columns: 50vw 50vw;
+  justify-items: center;
+  margin-left: -25px;
+  padding-top: 100px;
 }
 
 .numbers {
   display: flex;
-  margin-left: 50px;
-
-}
-
-.numbers > p{
-  height: 50px;
-  width: 50px;
+  margin-left: 50px; 
 }
 
 .letters {
   float: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.letters > p {
+.letters > p,
+.numbers > p {
+  display: flex;
   height: 50px;
   width: 50px;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-blue);
+  font-weight: 700;
 }
 
 .grid {
@@ -121,4 +125,8 @@
 
 .cell {
   border: 1px solid black;
+}
+
+.cell:hover {
+  background-color: rgba(128, 128, 128, 0.3);
 }
