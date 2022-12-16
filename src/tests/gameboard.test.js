@@ -143,5 +143,6 @@ test('test gameboard reports all ships sunk', () => {
   board.receiveAttack('h4');
   board.receiveAttack('h5');
   board.receiveAttack('a2');
-  expect(board.receiveAttack('b2')).toBeTruthy();
+  board.receiveAttack('b2');
+  expect(board.checkAllShipsSunk()).toBeTruthy();
 });

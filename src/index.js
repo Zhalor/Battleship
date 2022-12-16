@@ -14,9 +14,9 @@ startGameBtn.addEventListener('click', () => {
 });
 
 function createPlayers() {
-  const humanPlayer = player();
+  const humanPlayer = player(true);
   players.push(humanPlayer);
-  const computerPlayer = player();
+  const computerPlayer = player(false);
   players.push(computerPlayer);
 }
 

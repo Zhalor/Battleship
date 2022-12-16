@@ -193,10 +193,11 @@ function gameBoard() {
   const receiveAttack = (coords) => {
     if(coordinates[coords]) {
       checkCellContainsShip(coordinates[coords]);
+      return true;
     } else {
       coordinates[coords] = 'miss';
+      return false;
     }
-    return checkAllShipsSunk();
   }
 
   const checkCellContainsShip = (coords) => {
@@ -227,7 +228,7 @@ function gameBoard() {
   }
 
   return { coordinates, placeCarrier, placeBattleship, placeCruiser, placeSubmarine, placeDestroyer,
-    receiveAttack, ships };
+    receiveAttack, checkAllShipsSunk, ships };
 }
 
 export { gameBoard };

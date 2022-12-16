@@ -127,6 +127,6 @@
   border: 1px solid black;
 }
 
-.cell:hover {
+#computer-gameboard .cell:hover {
   background-color: rgba(128, 128, 128, 0.3);
 }

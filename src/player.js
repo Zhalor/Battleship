@@ -1,5 +1,4 @@
-const player = () => {
-
+const player = (turn) => {
   const movesMade = {};
 
   const makeMove = () => {
@@ -17,7 +16,7 @@ const player = () => {
     return letter.concat(num);
   }
 
-  return { makeMove, movesMade }
+  return { makeMove, movesMade, turn }
 }
 
 export { player };
