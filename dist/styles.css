@@ -11,6 +11,16 @@
   --teal: #087E8B;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
 .title-container {
   margin-top: 110px;
   display: flex;
@@ -46,8 +56,8 @@
 .player-name-input:focus {
   border-color: var(--teal);
 }
-
-.start-game {
+.start-game,
+.game-over-btn {
   margin-top: 80px;
   font-size: 1.8rem;
   padding: 18px;
@@ -60,13 +70,31 @@
   transition-timing-function: ease-in-out;
 }
 
-.start-game:hover {
+.game-over-btn,
+.winner-name-display {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.winner-name-display {
+  bottom: 25%;
+  color: var(--dark-blue);
+  font-size: 1.8rem;
+}
+
+.start-game:hover,
+.game-over-btn:hover {
   background-color: white;
   color: var(--teal);
   transform: scale(1.05);
 }
 
-.start-game:active {
+.start-game:active,
+.game-over-btn:active {
   transform: scale(.9);
 }
 
@@ -127,6 +155,14 @@
   border: 1px solid black;
 }
 
-#computer-gameboard .cell:hover {
+#computer-gameboard .cell:hover:not(.hit):not(.miss) {
   background-color: rgba(128, 128, 128, 0.3);
+}
+
+.hit {
+  background-color: rgba(255, 30, 30, 0.7);
+}
+
+.miss {
+  background-color: rgba(0, 0, 255, 0.7);
 }

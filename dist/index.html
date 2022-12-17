@@ -9,6 +9,11 @@
   <title>Battleship Game</title>
 </head>
 <body>
+
+  <div class="modal" id="game-over-modal">
+    <h2 id="winner-name-display" class="winner-name-display"></h2>
+    <button id="game-over-btn" class="game-over-btn">Play Again?</button>
+  </div>
   
   <div id="title-container" class="title-container">
     <h1 class="title-header">Battleship</h1>
@@ -43,7 +48,7 @@
         <p>G</p>
         <p>H</p>
       </div>
-      <div class="grid" disabled>
+      <div class="grid">
         <div class="cell" data-coordinates="a1"></div>
         <div class="cell" data-coordinates="a2"></div>
         <div class="cell" data-coordinates="a3"></div>

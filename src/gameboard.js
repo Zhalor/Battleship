@@ -1,6 +1,6 @@
 import { ship } from "./ships";
 
-function gameBoard() {
+function gameBoard(name) {
   const coordinates = {
     a1: '',
     a2: '',
@@ -228,7 +228,7 @@ function gameBoard() {
   }
 
   return { coordinates, placeCarrier, placeBattleship, placeCruiser, placeSubmarine, placeDestroyer,
-    receiveAttack, checkAllShipsSunk, ships };
+    receiveAttack, checkAllShipsSunk, ships, name };
 }
 
 export { gameBoard };
