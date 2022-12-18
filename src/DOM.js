@@ -23,20 +23,22 @@ function displayBoard() {
 
 for(let cell of computerCells) {
   cell.addEventListener('click', () => {
-    if(players[0].turn) {
-      fire(cell.dataset.coordinates, boards[1]);
-      if(boards[1].checkAllShipsSunk()) {
-        displayGameOverScreen('Computer loses. You win!');
+    const classNames = ['hit', 'miss'];
+    if(!classNames.some(className => cell.classList.contains(className))) {
+      if(players[0].turn) {
+        fire(cell.dataset.coordinates, boards[1]);
+        if(boards[1].checkAllShipsSunk()) {
+          displayGameOverScreen('Computer loses. You win!');
+        }
+        players[0].turn = false;
+  
+        fire(players[1].makeMove(), boards[0]);
+        if(boards[0].checkAllShipsSunk()) {
+          displayGameOverScreen('You lose. Computer wins.');
+        }
+        players[0].turn = true;
       }
-      players[0].turn = false;
-
-      fire(players[1].makeMove(), boards[0]);
-      if(boards[0].checkAllShipsSunk()) {
-        displayGameOverScreen('You lose. Computer wins.');
-      }
-      players[0].turn = true;
     }
-
   });
 }
 

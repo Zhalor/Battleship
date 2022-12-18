@@ -42,7 +42,8 @@
   font-weight: 700;
 }
 
-.player-name-input {
+.player-name-input,
+.ship-placement-input {
   outline: none;
   text-align: center;
   font-size: 1.1rem;
@@ -53,7 +54,9 @@
 }
 
 .player-name-input:hover,
-.player-name-input:focus {
+.player-name-input:focus,
+.ship-placement-input:hover,
+.ship-placement-input:focus {
   border-color: var(--teal);
 }
 .start-game,
@@ -73,7 +76,7 @@
 .game-over-btn,
 .winner-name-display {
   position: absolute;
-  bottom: 15%;
+  bottom: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -81,7 +84,7 @@
 }
 
 .winner-name-display {
-  bottom: 25%;
+  bottom: 20%;
   color: var(--dark-blue);
   font-size: 1.8rem;
 }
@@ -120,7 +123,46 @@
   grid-template-columns: 50vw 50vw;
   justify-items: center;
   margin-left: -25px;
-  padding-top: 100px;
+  padding-top: 50px;
+}
+
+.ship-placement-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 480px;
+  width: 480px;
+  margin-top: 50px;
+  color: var(--dark-green);
+}
+
+.ship-placement-container > h2:first-of-type {
+  padding: 60px 0px;
+  font-size: 2.5rem;
+}
+
+.place-ship-btn,
+.rotate-btn {
+  width: 90px;
+  padding: 10px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  border: 1px solid var(--teal);
+}
+
+.place-ship-btn {
+  background-color: var(--teal);
+  color: white;
+}
+
+.rotate-btn {
+  background-color: white;
+  color: var(--teal);
+}
+
+#computer-gameboard {
+  display: none;
 }
 
 .numbers {
@@ -137,8 +179,8 @@
 .letters > p,
 .numbers > p {
   display: flex;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   align-items: center;
   justify-content: center;
   color: var(--dark-blue);
@@ -147,7 +189,7 @@
 
 .grid {
   display: grid;
-  grid-template: repeat(8, 50px) / repeat(8, 50px);
+  grid-template: repeat(8, 60px) / repeat(8, 60px);
 
 }
 
@@ -157,6 +199,7 @@
 
 #computer-gameboard .cell:hover:not(.hit):not(.miss) {
   background-color: rgba(128, 128, 128, 0.3);
+  cursor: crosshair;
 }
 
 .hit {

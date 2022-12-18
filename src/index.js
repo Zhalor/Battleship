@@ -18,7 +18,7 @@ startGameBtn.addEventListener('click', () => {
 gameOverBtn.addEventListener('click', () => {
   const cells = document.querySelectorAll('.cell');
   for(let cell of cells) {
-    cell.style.backgroundColor = 'white';
+    cell.classList.remove('hit', 'miss');
   }
   modal.style.display = 'none';
   boards.length = 0;
