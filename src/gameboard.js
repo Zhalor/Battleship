@@ -69,6 +69,11 @@ function gameBoard(name) {
   }
 
   const ships = [];
+  let shipsPlaced = 0;
+
+  const getShipsPlaced = () => {
+    return shipsPlaced;
+  }
 
   const placeCarrier = (coords, vertical) => {
     const carrier = ship('carrier', 5);
@@ -79,8 +84,10 @@ function gameBoard(name) {
       if((num + carrier.length) < 10) {
         for(let i = num; i < num + carrier.length; i++) {
           coordinates[letter + i] = 'carrier';
+          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'carrier';
         }
         ships.push(carrier);
+        shipsPlaced++;
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + carrier.length < 105) {
@@ -88,8 +95,10 @@ function gameBoard(name) {
         for(let i = letterCharCode; i < letterCharCode + carrier.length; i++) {
           let coordLetter = String.fromCharCode(i);
           coordinates[coordLetter + num] = 'carrier';
+          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'carrier';
         }
         ships.push(carrier);
+        shipsPlaced++;
       }
     }
   }
@@ -103,8 +112,10 @@ function gameBoard(name) {
       if((num + battleship.length) < 10) {
         for(let i = num; i < num + battleship.length; i++) {
           coordinates[letter + i] = 'battleship';
+          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'battleship';
         }
         ships.push(battleship);
+        shipsPlaced++;
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + battleship.length < 105) {
@@ -112,8 +123,10 @@ function gameBoard(name) {
         for(let i = letterCharCode; i < letterCharCode + battleship.length; i++) {
           let coordLetter = String.fromCharCode(i);
           coordinates[coordLetter + num] = 'battleship';
+          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'battleship';
         }
         ships.push(battleship);
+        shipsPlaced++;
       }
     }
   }
@@ -127,8 +140,10 @@ function gameBoard(name) {
       if((num + cruiser.length) < 10) {
         for(let i = num; i < num + cruiser.length; i++) {
           coordinates[letter + i] = 'cruiser';
+          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'cruiser';
         }
         ships.push(cruiser);
+        shipsPlaced++;
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + cruiser.length < 105) {
@@ -136,8 +151,10 @@ function gameBoard(name) {
         for(let i = letterCharCode; i < letterCharCode + cruiser.length; i++) {
           let coordLetter = String.fromCharCode(i);
           coordinates[coordLetter + num] = 'cruiser';
+          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'cruiser';
         }
         ships.push(cruiser);
+        shipsPlaced++;
       }
     }
   }
@@ -151,8 +168,10 @@ function gameBoard(name) {
       if((num + submarine.length) < 10) {
         for(let i = num; i < num + submarine.length; i++) {
           coordinates[letter + i] = 'submarine';
+          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'submarine';
         }
         ships.push(submarine);
+        shipsPlaced++;
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + submarine.length < 105) {
@@ -160,8 +179,10 @@ function gameBoard(name) {
         for(let i = letterCharCode; i < letterCharCode + submarine.length; i++) {
           let coordLetter = String.fromCharCode(i);
           coordinates[coordLetter + num] = 'submarine';
+          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'submarine';
         }
         ships.push(submarine);
+        shipsPlaced++;
       }
     }
   }
@@ -175,8 +196,10 @@ function gameBoard(name) {
       if((num + destroyer.length) < 10) {
         for(let i = num; i < num + destroyer.length; i++) {
           coordinates[letter + i] = 'destroyer';
+          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'destroyer';
         }
         ships.push(destroyer);
+        shipsPlaced++;
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + destroyer.length < 105) {
@@ -184,8 +207,10 @@ function gameBoard(name) {
         for(let i = letterCharCode; i < letterCharCode + destroyer.length; i++) {
           let coordLetter = String.fromCharCode(i);
           coordinates[coordLetter + num] = 'destroyer';
+          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'destroyer';
         }
         ships.push(destroyer);
+        shipsPlaced++;
       }
     }
   }
@@ -228,7 +253,7 @@ function gameBoard(name) {
   }
 
   return { coordinates, placeCarrier, placeBattleship, placeCruiser, placeSubmarine, placeDestroyer,
-    receiveAttack, checkAllShipsSunk, ships, name };
+    receiveAttack, checkAllShipsSunk, ships, name, getShipsPlaced };
 }
 
 export { gameBoard };

@@ -24,7 +24,7 @@
 
   <div id="game-header" class="game-header">
     <p id="player-name">Your Board</p>
-    <p>Enemy Board</p>
+    <p id="enemy-name">Type in your coordinates to place a ship</p>
   </div>
   <div id='game-container' class="game-container">
     <div id="player-gameboard">
@@ -207,8 +207,8 @@
       <h2>Place Your Ship</h2>
       <h2>This is where the ship name would go</h2>
       <input type="text" name="ship-placement-input" id="ship-placement-input" class="ship-placement-input" placeholder="Example: D3" maxlength="2" minlength="2">
-      <button class="place-ship-btn">Place</button>
-      <button class="rotate-btn">Rotate</button>
+      <button id="place-ship-btn" class="place-ship-btn">Place</button>
+      <button id="rotate-btn" class="rotate-btn">Rotate</button>
     </div>
   </div>
 </body>

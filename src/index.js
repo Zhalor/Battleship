@@ -1,18 +1,34 @@
 import { ship } from "./ships";
 import { gameBoard } from "./gameboard";
 import { player } from './player';
-import { displayBoard } from './DOM'
+import { displayBoard, displayStartMatchBtn } from './DOM'
 
 const startGameBtn = document.getElementById('start-game');
 const modal = document.getElementById('game-over-modal');
 const gameOverBtn = document.getElementById('game-over-btn');
+const shipPlacementInput = document.getElementById('ship-placement-input');
+const rotateBtn = document.getElementById('rotate-btn');
+const placeShipBtn = document.getElementById('place-ship-btn');
+
 const boards = [];
 const players = []
+let vertical = false;
 
 startGameBtn.addEventListener('click', () => {
   displayBoard();
   createPlayers();
   createBoards();
+  shipPlacementInput.focus();
+});
+
+placeShipBtn.addEventListener('click', () => {
+  placeShip();
+  shipPlacementInput.value = '';
+  shipPlacementInput.focus();
+});
+
+rotateBtn.addEventListener('click', () => {
+  vertical = vertical == false ? true : false;
 });
 
 gameOverBtn.addEventListener('click', () => {
@@ -29,27 +45,41 @@ gameOverBtn.addEventListener('click', () => {
 
 function createPlayers() {
   const humanPlayer = player(true);
-  players.push(humanPlayer);
   const computerPlayer = player(false);
+  players.push(humanPlayer);
   players.push(computerPlayer);
 }
 
 function createBoards() {
   const playerBoard = gameBoard('player');
-  playerBoard.placeCarrier('a1', false);
-  playerBoard.placeBattleship('b1', false);
-  playerBoard.placeCruiser('c1', false);
-  playerBoard.placeSubmarine('d1', false);
-  playerBoard.placeDestroyer('e1', false);
-  boards.push(playerBoard);
-
   const computerBoard = gameBoard('computer');
-  computerBoard.placeCarrier('a1', false);
-  computerBoard.placeBattleship('b1', false);
-  computerBoard.placeCruiser('c1', false);
-  computerBoard.placeSubmarine('d1', false);
-  computerBoard.placeDestroyer('e1', false);
+  boards.push(playerBoard);
   boards.push(computerBoard);
+}
+
+function placeShip() {
+  switch (boards[0].getShipsPlaced()) {
+    case 0:
+      boards[0].placeCarrier(shipPlacementInput.value, vertical);
+      vertical = false;
+      break;
+    case 1:
+      boards[0].placeBattleship(shipPlacementInput.value, vertical);
+      vertical = false;
+      break;
+    case 2:
+      boards[0].placeCruiser(shipPlacementInput.value, vertical);
+      vertical = false;
+      break;
+    case 3:
+      boards[0].placeSubmarine(shipPlacementInput.value, vertical);
+      vertical = false;
+      break;
+    case 4:
+      boards[0].placeDestroyer(shipPlacementInput.value, vertical);
+      displayStartMatchBtn();
+      break;
+  }
 }
 
 export { boards, players }

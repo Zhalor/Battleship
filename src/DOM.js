@@ -10,7 +10,10 @@ const gameContainer = document.getElementById('game-container');
 const gameHeader = document.getElementById('game-header');
 const playerName = document.getElementById('player-name');
 const nameInput = document.getElementById('player-name-input');
+const shipPlacementContainer = document.getElementById('ship-placement-container');
+const computerGameboard = document.getElementById('computer-gameboard');
 const computerCells = document.querySelectorAll('#computer-gameboard .cell');
+
 
 function displayBoard() {
   titleContainer.style.display = 'none';
@@ -62,6 +65,11 @@ function checkHit(hit, coords, board) {
   }
 }
 
+function displayStartMatchBtn() {
+  shipPlacementContainer.style.display = 'none';
+  computerGameboard.style.display = 'block';
+}
+
 function displayGameOverScreen(winner) {
   modal.style.display = 'block';
   winnerNameDisplay.innerText = winner;
@@ -69,4 +77,4 @@ function displayGameOverScreen(winner) {
 }
 
 
-export { displayBoard }
+export { displayBoard, displayStartMatchBtn }

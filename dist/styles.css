@@ -115,14 +115,13 @@
   font-size: 2rem;
   font-weight: 700;
   padding: 30px 0px;
-  
+  text-align: center;
 }
 
 .game-container {
   display: none;
   grid-template-columns: 50vw 50vw;
   justify-items: center;
-  margin-left: -25px;
   padding-top: 50px;
 }
 
@@ -161,13 +160,18 @@
   color: var(--teal);
 }
 
+#player-gameboard,
+#computer-gameboard {
+  padding-right: 60px;
+}
+
 #computer-gameboard {
   display: none;
 }
 
 .numbers {
   display: flex;
-  margin-left: 50px; 
+  margin-left: 60px; 
 }
 
 .letters {
@@ -200,6 +204,10 @@
 #computer-gameboard .cell:hover:not(.hit):not(.miss) {
   background-color: rgba(128, 128, 128, 0.3);
   cursor: crosshair;
+}
+
+[data-ship] {
+  background-color: honeydew;
 }
 
 .hit {
