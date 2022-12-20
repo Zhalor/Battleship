@@ -75,32 +75,75 @@ function gameBoard(name) {
     return shipsPlaced;
   }
 
+  function checkCellAvailablityHorizontal(shipLength, coordNum, letter) {
+    const arr = [];
+    for(let i = coordNum; i < coordNum + shipLength; i++) {
+      if(coordinates[letter + i]) {
+        console.log('false');
+        return false;
+      } else {
+        arr.push(letter + i);
+      }
+    }
+    return arr;
+  }
+
+  function checkCellAvailablityVertical(shipLength, letterCharCode, num ) {
+    const arr = [];
+    for(let i = letterCharCode; i < letterCharCode + shipLength; i++) {
+      let coordLetter = String.fromCharCode(i);
+      if(coordinates[coordLetter + num]) {
+        console.log('false');
+        return false;
+      } else {
+        arr.push(coordLetter + num);
+      }
+    }
+    return arr;
+  }
+
+  function placeShip(shipObj, shipString, letter, num, vertical) {
+    if(vertical === false) {
+      if((num + shipObj.length) < 10) {
+        //check if coordinates already contain a ship
+        const placeCoordinates = checkCellAvailablityHorizontal(shipObj.length, num, letter);
+        if(placeCoordinates != false) {
+          for(let coordinate of placeCoordinates) {
+            coordinates[coordinate] = shipString;
+            document.querySelector(`[data-coordinates="${coordinate}"]`).dataset.ship = shipString;
+          }
+          ships.push(shipObj);
+          shipsPlaced++;
+          document.getElementById('ship-placement-input').classList.remove('error');
+        } else {
+          document.getElementById('ship-placement-input').classList.add('error');
+        }
+      }
+    } else if(vertical === true) {
+      if(letter.charCodeAt() + shipObj.length < 105) {
+        //check if coordinates already contain a ship
+        const placeCoordinates = checkCellAvailablityVertical(shipObj.length, letter.charCodeAt(), num);
+        if(placeCoordinates != false) {
+          for(let coordinate of placeCoordinates) {
+            coordinates[coordinate] = shipString;
+            document.querySelector(`[data-coordinates="${coordinate}"]`).dataset.ship = shipString;
+          }
+          ships.push(shipObj);
+          shipsPlaced++;
+          document.getElementById('ship-placement-input').classList.remove('error');
+        } else {
+          document.getElementById('ship-placement-input').classList.add('error');
+        }
+      }
+    }
+  }
+
   const placeCarrier = (coords, vertical) => {
     const carrier = ship('carrier', 5);
     let [letter, num] = coords.split('');
     num = Number(num);
 
-    if(vertical === false) {
-      if((num + carrier.length) < 10) {
-        for(let i = num; i < num + carrier.length; i++) {
-          coordinates[letter + i] = 'carrier';
-          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'carrier';
-        }
-        ships.push(carrier);
-        shipsPlaced++;
-      }
-    } else if(vertical === true) {
-      if(letter.charCodeAt() + carrier.length < 105) {
-        let letterCharCode = letter.charCodeAt();
-        for(let i = letterCharCode; i < letterCharCode + carrier.length; i++) {
-          let coordLetter = String.fromCharCode(i);
-          coordinates[coordLetter + num] = 'carrier';
-          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'carrier';
-        }
-        ships.push(carrier);
-        shipsPlaced++;
-      }
-    }
+    placeShip(carrier, 'carrier', letter, num, vertical);
   }
   
   const placeBattleship = (coords, vertical) => {
@@ -108,27 +151,7 @@ function gameBoard(name) {
     let [letter, num] = coords.split('');
     num = Number(num);
 
-    if(vertical === false) {
-      if((num + battleship.length) < 10) {
-        for(let i = num; i < num + battleship.length; i++) {
-          coordinates[letter + i] = 'battleship';
-          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'battleship';
-        }
-        ships.push(battleship);
-        shipsPlaced++;
-      }
-    } else if(vertical === true) {
-      if(letter.charCodeAt() + battleship.length < 105) {
-        let letterCharCode = letter.charCodeAt();
-        for(let i = letterCharCode; i < letterCharCode + battleship.length; i++) {
-          let coordLetter = String.fromCharCode(i);
-          coordinates[coordLetter + num] = 'battleship';
-          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'battleship';
-        }
-        ships.push(battleship);
-        shipsPlaced++;
-      }
-    }
+    placeShip(battleship, 'battleship', letter, num, vertical);
   }
 
   const placeCruiser = (coords, vertical) => {
@@ -136,27 +159,7 @@ function gameBoard(name) {
     let [letter, num] = coords.split('');
     num = Number(num);
 
-    if(vertical === false) {
-      if((num + cruiser.length) < 10) {
-        for(let i = num; i < num + cruiser.length; i++) {
-          coordinates[letter + i] = 'cruiser';
-          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'cruiser';
-        }
-        ships.push(cruiser);
-        shipsPlaced++;
-      }
-    } else if(vertical === true) {
-      if(letter.charCodeAt() + cruiser.length < 105) {
-        let letterCharCode = letter.charCodeAt();
-        for(let i = letterCharCode; i < letterCharCode + cruiser.length; i++) {
-          let coordLetter = String.fromCharCode(i);
-          coordinates[coordLetter + num] = 'cruiser';
-          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'cruiser';
-        }
-        ships.push(cruiser);
-        shipsPlaced++;
-      }
-    }
+    placeShip(cruiser, 'cruiser', letter, num, vertical);
   }
 
   const placeSubmarine = (coords, vertical) => {
@@ -164,27 +167,7 @@ function gameBoard(name) {
     let [letter, num] = coords.split('');
     num = Number(num);
 
-    if(vertical === false) {
-      if((num + submarine.length) < 10) {
-        for(let i = num; i < num + submarine.length; i++) {
-          coordinates[letter + i] = 'submarine';
-          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'submarine';
-        }
-        ships.push(submarine);
-        shipsPlaced++;
-      }
-    } else if(vertical === true) {
-      if(letter.charCodeAt() + submarine.length < 105) {
-        let letterCharCode = letter.charCodeAt();
-        for(let i = letterCharCode; i < letterCharCode + submarine.length; i++) {
-          let coordLetter = String.fromCharCode(i);
-          coordinates[coordLetter + num] = 'submarine';
-          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'submarine';
-        }
-        ships.push(submarine);
-        shipsPlaced++;
-      }
-    }
+    placeShip(submarine, 'submarine', letter, num, vertical);
   }
 
   const placeDestroyer = (coords, vertical) => {
@@ -192,27 +175,7 @@ function gameBoard(name) {
     let [letter, num] = coords.split('');
     num = Number(num);
 
-    if(vertical === false) {
-      if((num + destroyer.length) < 10) {
-        for(let i = num; i < num + destroyer.length; i++) {
-          coordinates[letter + i] = 'destroyer';
-          document.querySelector(`[data-coordinates="${letter + i}"]`).dataset.ship = 'destroyer';
-        }
-        ships.push(destroyer);
-        shipsPlaced++;
-      }
-    } else if(vertical === true) {
-      if(letter.charCodeAt() + destroyer.length < 105) {
-        let letterCharCode = letter.charCodeAt();
-        for(let i = letterCharCode; i < letterCharCode + destroyer.length; i++) {
-          let coordLetter = String.fromCharCode(i);
-          coordinates[coordLetter + num] = 'destroyer';
-          document.querySelector(`[data-coordinates="${coordLetter + num}"]`).dataset.ship = 'destroyer';
-        }
-        ships.push(destroyer);
-        shipsPlaced++;
-      }
-    }
+    placeShip(destroyer, 'destroyer', letter, num, vertical);
   }
 
   const receiveAttack = (coords) => {
@@ -252,8 +215,8 @@ function gameBoard(name) {
     }
   }
 
-  return { coordinates, placeCarrier, placeBattleship, placeCruiser, placeSubmarine, placeDestroyer,
-    receiveAttack, checkAllShipsSunk, ships, name, getShipsPlaced };
+  return { coordinates, ships, name, placeCarrier, placeBattleship, placeCruiser, placeSubmarine, placeDestroyer,
+    receiveAttack, checkAllShipsSunk, getShipsPlaced };
 }
 
 export { gameBoard };
