@@ -1,4 +1,5 @@
 import { ship } from "./ships";
+import { displayStartMatchBtn } from "./DOM";
 
 function gameBoard(name) {
   const coordinates = {
@@ -79,7 +80,6 @@ function gameBoard(name) {
     const arr = [];
     for(let i = coordNum; i < coordNum + shipLength; i++) {
       if(coordinates[letter + i]) {
-        console.log('false');
         return false;
       } else {
         arr.push(letter + i);
@@ -93,7 +93,6 @@ function gameBoard(name) {
     for(let i = letterCharCode; i < letterCharCode + shipLength; i++) {
       let coordLetter = String.fromCharCode(i);
       if(coordinates[coordLetter + num]) {
-        console.log('false');
         return false;
       } else {
         arr.push(coordLetter + num);
@@ -102,15 +101,16 @@ function gameBoard(name) {
     return arr;
   }
 
-  function placeShip(shipObj, shipString, letter, num, vertical) {
+  function placeShip(shipObj, shipString, letter, num, vertical, DOM) {
     if(vertical === false) {
       if((num + shipObj.length) < 10) {
-        //check if coordinates already contain a ship
         const placeCoordinates = checkCellAvailablityHorizontal(shipObj.length, num, letter);
         if(placeCoordinates != false) {
           for(let coordinate of placeCoordinates) {
             coordinates[coordinate] = shipString;
-            document.querySelector(`[data-coordinates="${coordinate}"]`).dataset.ship = shipString;
+            if(DOM == true) {
+              document.querySelector(`[data-coordinates="${coordinate}"]`).classList.add('ship');
+            }
           }
           ships.push(shipObj);
           shipsPlaced++;
@@ -121,12 +121,13 @@ function gameBoard(name) {
       }
     } else if(vertical === true) {
       if(letter.charCodeAt() + shipObj.length < 105) {
-        //check if coordinates already contain a ship
         const placeCoordinates = checkCellAvailablityVertical(shipObj.length, letter.charCodeAt(), num);
         if(placeCoordinates != false) {
           for(let coordinate of placeCoordinates) {
             coordinates[coordinate] = shipString;
-            document.querySelector(`[data-coordinates="${coordinate}"]`).dataset.ship = shipString;
+            if(DOM == true) {
+              document.querySelector(`[data-coordinates="${coordinate}"]`).classList.add('ship');
+            }
           }
           ships.push(shipObj);
           shipsPlaced++;
@@ -138,44 +139,52 @@ function gameBoard(name) {
     }
   }
 
-  const placeCarrier = (coords, vertical) => {
+  const placeCarrier = (coords, vertical, DOM) => {
     const carrier = ship('carrier', 5);
     let [letter, num] = coords.split('');
     num = Number(num);
-
-    placeShip(carrier, 'carrier', letter, num, vertical);
+    if(letter < 'i' && /[a-z]/.test(letter)) {
+      placeShip(carrier, 'carrier', letter, num, vertical, DOM);
+    }
   }
   
-  const placeBattleship = (coords, vertical) => {
+  const placeBattleship = (coords, vertical, DOM) => {
     const battleship = ship('battleship', 4);
     let [letter, num] = coords.split('');
     num = Number(num);
-
-    placeShip(battleship, 'battleship', letter, num, vertical);
+    if(letter < 'i' && /[a-z]/.test(letter)) {
+      placeShip(battleship, 'battleship', letter, num, vertical, DOM);
+    }
   }
 
-  const placeCruiser = (coords, vertical) => {
+  const placeCruiser = (coords, vertical, DOM) => {
     const cruiser = ship('cruiser', 3);
     let [letter, num] = coords.split('');
     num = Number(num);
-
-    placeShip(cruiser, 'cruiser', letter, num, vertical);
+    if(letter < 'i' && /[a-z]/.test(letter)) {
+      placeShip(cruiser, 'cruiser', letter, num, vertical, DOM); 
+    }
   }
 
-  const placeSubmarine = (coords, vertical) => {
+  const placeSubmarine = (coords, vertical, DOM) => {
     const submarine = ship('submarine', 3);
     let [letter, num] = coords.split('');
     num = Number(num);
-
-    placeShip(submarine, 'submarine', letter, num, vertical);
+    if(letter < 'i' && /[a-z]/.test(letter)) {
+      placeShip(submarine, 'submarine', letter, num, vertical, DOM); 
+    }
   }
 
-  const placeDestroyer = (coords, vertical) => {
+  const placeDestroyer = (coords, vertical, DOM) => {
     const destroyer = ship('destroyer', 2);
     let [letter, num] = coords.split('');
     num = Number(num);
-
-    placeShip(destroyer, 'destroyer', letter, num, vertical);
+    if(letter < 'i' && /[a-z]/.test(letter)) {
+      placeShip(destroyer, 'destroyer', letter, num, vertical, DOM);
+    }
+    if (shipsPlaced === 5) {
+      displayStartMatchBtn();
+    }
   }
 
   const receiveAttack = (coords) => {

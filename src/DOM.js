@@ -1,6 +1,3 @@
-import { ship } from "./ships";
-import { gameBoard,checkAllShipsSunk } from "./gameboard";
-import { player } from './player';
 import { boards, players } from './index';
 
 const modal = document.getElementById('game-over-modal');
@@ -11,6 +8,9 @@ const gameHeader = document.getElementById('game-header');
 const playerName = document.getElementById('player-name');
 const nameInput = document.getElementById('player-name-input');
 const shipPlacementContainer = document.getElementById('ship-placement-container');
+const placeShipBtn = document.getElementById('place-ship-btn');
+const rotateBtn = document.getElementById('rotate-btn');
+const startRoundBtn = document.getElementById('start-round-btn');
 const computerGameboard = document.getElementById('computer-gameboard');
 const computerCells = document.querySelectorAll('#computer-gameboard .cell');
 
@@ -19,6 +19,11 @@ function displayBoard() {
   titleContainer.style.display = 'none';
   gameContainer.style.display = 'grid';
   gameHeader.style.display = 'grid';
+  computerGameboard.style.display = 'none';
+  shipPlacementContainer.style.display = 'flex';
+  placeShipBtn.style.display = 'inline';
+  rotateBtn.style.display = 'inline';
+  startRoundBtn.style.display = 'none';
 
   const name = nameInput.value == '' ? 'Your': nameInput.value + '\'s'
   playerName.innerText = `${name} Board`
@@ -66,6 +71,12 @@ function checkHit(hit, coords, board) {
 }
 
 function displayStartMatchBtn() {
+  placeShipBtn.style.display = 'none';
+  rotateBtn.style.display = 'none';
+  startRoundBtn.style.display = 'inline';
+}
+
+function displayComputerGameboard() {
   shipPlacementContainer.style.display = 'none';
   computerGameboard.style.display = 'block';
 }
@@ -73,8 +84,7 @@ function displayStartMatchBtn() {
 function displayGameOverScreen(winner) {
   modal.style.display = 'block';
   winnerNameDisplay.innerText = winner;
-  console.log(boards, players)
 }
 
 
-export { displayBoard, displayStartMatchBtn }
+export { displayBoard, displayStartMatchBtn, displayComputerGameboard }

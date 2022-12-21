@@ -142,7 +142,8 @@
 }
 
 .place-ship-btn,
-.rotate-btn {
+.rotate-btn,
+.start-round-btn {
   width: 90px;
   padding: 10px;
   font-size: 1.1rem;
@@ -150,7 +151,8 @@
   border: 1px solid var(--teal);
 }
 
-.place-ship-btn {
+.place-ship-btn,
+.start-round-btn {
   background-color: var(--teal);
   color: white;
 }
@@ -158,6 +160,12 @@
 .rotate-btn {
   background-color: white;
   color: var(--teal);
+}
+
+.start-round-btn {
+  display: none;
+  width: 130px;
+  font-size: 1.2rem;
 }
 
 #player-gameboard,
@@ -206,7 +214,7 @@
   cursor: crosshair;
 }
 
-[data-ship] {
+.ship {
   background-color: honeydew;
 }
 

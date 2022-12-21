@@ -16,7 +16,11 @@ const player = (turn) => {
     return letter.concat(num);
   }
 
-  return { makeMove, movesMade, turn }
+  const generateBoolean = () => {
+    return Math.floor(Math.random() * 2) == 1 ? true : false;
+  }
+
+  return { turn, makeMove, generateCoordinate, generateBoolean }
 }
 
 export { player };
