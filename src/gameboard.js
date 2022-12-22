@@ -1,6 +1,8 @@
 import { ship } from "./ships";
 import { displayStartMatchBtn } from "./DOM";
 
+const shipName = document.getElementById('ship-name');
+
 function gameBoard(name) {
   const coordinates = {
     a1: '',
@@ -69,6 +71,8 @@ function gameBoard(name) {
     h8: '',
   }
 
+  const shipNames = ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer'];
+
   const ships = [];
   let shipsPlaced = 0;
 
@@ -110,6 +114,7 @@ function gameBoard(name) {
             coordinates[coordinate] = shipString;
             if(DOM == true) {
               document.querySelector(`[data-coordinates="${coordinate}"]`).classList.add('ship');
+              shipName.innerText = shipNames[shipsPlaced + 1];
             }
           }
           ships.push(shipObj);
@@ -120,13 +125,14 @@ function gameBoard(name) {
         }
       }
     } else if(vertical === true) {
-      if(letter.charCodeAt() + shipObj.length < 105) {
+      if(letter.charCodeAt() + shipObj.length < 106) {
         const placeCoordinates = checkCellAvailablityVertical(shipObj.length, letter.charCodeAt(), num);
         if(placeCoordinates != false) {
           for(let coordinate of placeCoordinates) {
             coordinates[coordinate] = shipString;
             if(DOM == true) {
               document.querySelector(`[data-coordinates="${coordinate}"]`).classList.add('ship');
+              shipName.innerText = shipNames[shipsPlaced + 1];
             }
           }
           ships.push(shipObj);

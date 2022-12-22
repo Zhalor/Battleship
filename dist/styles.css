@@ -60,7 +60,8 @@
   border-color: var(--teal);
 }
 .start-game,
-.game-over-btn {
+.game-over-btn,
+.start-round-btn {
   margin-top: 80px;
   font-size: 1.8rem;
   padding: 18px;
@@ -71,6 +72,10 @@
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
   transition: background-color .15s, color .15s, transform .25s;
   transition-timing-function: ease-in-out;
+}
+
+.start-round-btn {
+  margin: 0px;
 }
 
 .game-over-btn,
@@ -90,14 +95,16 @@
 }
 
 .start-game:hover,
-.game-over-btn:hover {
+.game-over-btn:hover,
+.start-round-btn:hover  {
   background-color: white;
   color: var(--teal);
   transform: scale(1.05);
 }
 
 .start-game:active,
-.game-over-btn:active {
+.game-over-btn:active,
+.start-round-btn:active  {
   transform: scale(.9);
 }
 
@@ -141,20 +148,32 @@
   font-size: 2.5rem;
 }
 
+.ship-name {
+  font-size: 1.8rem;
+}
+
 .place-ship-btn,
-.rotate-btn,
-.start-round-btn {
+.rotate-btn {
   width: 90px;
   padding: 10px;
   font-size: 1.1rem;
   margin-top: 10px;
   border: 1px solid var(--teal);
+  transition: background-color .15s;
+  transition-timing-function: ease-in-out;
 }
 
-.place-ship-btn,
-.start-round-btn {
+.place-ship-btn {
   background-color: var(--teal);
   color: white;
+}
+
+.place-ship-btn:hover {
+  background-color: rgb(15, 153, 168);
+}
+
+.place-ship-btn:active {
+  transform: scale(0.97);
 }
 
 .rotate-btn {
@@ -162,10 +181,14 @@
   color: var(--teal);
 }
 
-.start-round-btn {
-  display: none;
-  width: 130px;
-  font-size: 1.2rem;
+.rotate-btn:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.scale-down {
+  transform: scale(0.97);
+  background-color: rgb(243, 243, 243);
+  box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 #player-gameboard,
@@ -215,7 +238,7 @@
 }
 
 .ship {
-  background-color: honeydew;
+  background-color: rgba(128, 128, 128);
 }
 
 .hit {

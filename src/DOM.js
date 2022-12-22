@@ -6,8 +6,12 @@ const titleContainer = document.getElementById('title-container');
 const gameContainer = document.getElementById('game-container');
 const gameHeader = document.getElementById('game-header');
 const playerName = document.getElementById('player-name');
+const enemyName = document.getElementById('enemy-name');
 const nameInput = document.getElementById('player-name-input');
 const shipPlacementContainer = document.getElementById('ship-placement-container');
+const placeShipHeader = document.getElementById('place-ship-header');
+const shipName = document.getElementById('ship-name');
+const shipPlacementInput = document.getElementById('ship-placement-input');
 const placeShipBtn = document.getElementById('place-ship-btn');
 const rotateBtn = document.getElementById('rotate-btn');
 const startRoundBtn = document.getElementById('start-round-btn');
@@ -27,6 +31,7 @@ function displayBoard() {
 
   const name = nameInput.value == '' ? 'Your': nameInput.value + '\'s'
   playerName.innerText = `${name} Board`
+  shipName.innerText = 'Carrier';
 }
 
 for(let cell of computerCells) {
@@ -73,12 +78,16 @@ function checkHit(hit, coords, board) {
 function displayStartMatchBtn() {
   placeShipBtn.style.display = 'none';
   rotateBtn.style.display = 'none';
+  shipName.style.display = 'none';
+  shipPlacementInput.style.display = 'none';
   startRoundBtn.style.display = 'inline';
+  placeShipHeader.innerText = 'Prepare For Battle!';
 }
 
 function displayComputerGameboard() {
   shipPlacementContainer.style.display = 'none';
   computerGameboard.style.display = 'block';
+  enemyName.innerText = 'Enemy\'s Board'
 }
 
 function displayGameOverScreen(winner) {

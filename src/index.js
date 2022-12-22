@@ -9,6 +9,9 @@ const shipPlacementInput = document.getElementById('ship-placement-input');
 const rotateBtn = document.getElementById('rotate-btn');
 const startRoundBtn = document.getElementById('start-round-btn');
 const placeShipBtn = document.getElementById('place-ship-btn');
+const enemyName = document.getElementById('enemy-name');
+const placeShipHeader = document.getElementById('place-ship-header');
+const shipName = document.getElementById('ship-name');
 
 const boards = [];
 const players = []
@@ -25,10 +28,12 @@ placeShipBtn.addEventListener('click', () => {
   placeShip();
   shipPlacementInput.value = '';
   shipPlacementInput.focus();
+  rotateBtn.classList.remove('scale-down');
 });
 
 rotateBtn.addEventListener('click', () => {
   vertical = vertical == false ? true : false;
+  rotateBtn.classList.add('scale-down');
 });
 
 startRoundBtn.addEventListener('click', () => {
@@ -56,11 +61,17 @@ gameOverBtn.addEventListener('click', () => {
     cell.classList.remove('hit', 'miss', 'ship');
   }
   modal.style.display = 'none';
+  shipPlacementInput.style.display = 'inline';
+  enemyName.innerText = 'Type in your coordinates to place a ship';
+  placeShipHeader.innerText = 'Place Your Ships';
+  shipName.innerText = 'Carrier';
+
   boards.length = 0;
   players.length = 0;
   createPlayers();
   createBoards();
   displayBoard();
+
 });
 
 function createPlayers() {
