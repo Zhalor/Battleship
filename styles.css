@@ -1,0 +1,254 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --dark-blue: #011638;
+  --dark-green: #033A41;
+  --teal: #087E8B;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.title-container {
+  margin-top: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--dark-green);
+  font-size: 2rem;
+}
+
+.title-header {
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 4.5rem;
+  color: var(--dark-blue);
+}
+
+.title-container > p {
+  font-weight: 700;
+}
+
+.player-name-input,
+.ship-placement-input {
+  outline: none;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 8px;
+  border: 2px solid var(--dark-green);
+  border-radius: 3px;
+  transition: border-color .25s;
+}
+
+.player-name-input:hover,
+.player-name-input:focus,
+.ship-placement-input:hover,
+.ship-placement-input:focus {
+  border-color: var(--teal);
+}
+.start-game,
+.game-over-btn,
+.start-round-btn {
+  margin-top: 80px;
+  font-size: 1.8rem;
+  padding: 18px;
+  border-radius: 3px;
+  color: white;
+  background-color: var(--teal);
+  border: 1px solid var(--teal);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
+  transition: background-color .15s, color .15s, transform .25s;
+  transition-timing-function: ease-in-out;
+}
+
+.start-round-btn {
+  margin: 0px;
+}
+
+.game-over-btn,
+.winner-name-display {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.winner-name-display {
+  bottom: 20%;
+  color: var(--dark-blue);
+  font-size: 1.8rem;
+}
+
+.start-game:hover,
+.game-over-btn:hover,
+.start-round-btn:hover  {
+  background-color: white;
+  color: var(--teal);
+  transform: scale(1.05);
+}
+
+.start-game:active,
+.game-over-btn:active,
+.start-round-btn:active  {
+  transform: scale(.9);
+}
+
+
+.game-header {
+  background-color: var(--teal);
+  display: none;
+  grid-template-columns: 50vw 50vw;
+  justify-items: center;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+.game-header > p {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 30px 0px;
+  text-align: center;
+}
+
+.game-container {
+  display: none;
+  grid-template-columns: 50vw 50vw;
+  justify-items: center;
+  padding-top: 50px;
+}
+
+.ship-placement-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 480px;
+  width: 480px;
+  margin-top: 50px;
+  color: var(--dark-green);
+}
+
+.ship-placement-container > h2:first-of-type {
+  padding: 60px 0px;
+  font-size: 2.5rem;
+}
+
+.ship-name {
+  font-size: 1.8rem;
+}
+
+.place-ship-btn,
+.rotate-btn {
+  width: 90px;
+  padding: 10px;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  border: 1px solid var(--teal);
+  transition: background-color .15s;
+  transition-timing-function: ease-in-out;
+}
+
+.place-ship-btn {
+  background-color: var(--teal);
+  color: white;
+}
+
+.place-ship-btn:hover {
+  background-color: rgb(15, 153, 168);
+}
+
+.place-ship-btn:active {
+  transform: scale(0.97);
+}
+
+.rotate-btn {
+  background-color: white;
+  color: var(--teal);
+}
+
+.rotate-btn:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.scale-down {
+  transform: scale(0.97);
+  background-color: rgb(243, 243, 243);
+  box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#player-gameboard,
+#computer-gameboard {
+  padding-right: 60px;
+}
+
+#computer-gameboard {
+  display: none;
+}
+
+.numbers {
+  display: flex;
+  margin-left: 60px; 
+}
+
+.letters {
+  float: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.letters > p,
+.numbers > p {
+  display: flex;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-blue);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template: repeat(8, 60px) / repeat(8, 60px);
+
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+#computer-gameboard .cell:hover:not(.hit):not(.miss) {
+  background-color: rgba(128, 128, 128, 0.3);
+  cursor: crosshair;
+}
+
+.ship {
+  background-color: rgba(128, 128, 128);
+}
+
+.hit {
+  background-color: rgba(255, 30, 30, 0.7);
+}
+
+.miss {
+  background-color: rgba(0, 0, 255, 0.7);
+}
+
+.ship-placement-container .error {
+  border-color: rgba(255, 0, 0, 0.8);
+}

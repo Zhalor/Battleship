@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" defer></script>
+  <title>Battleship Game</title>
+</head>
+<body>
+
+  <div class="modal" id="game-over-modal">
+    <h2 id="winner-name-display" class="winner-name-display"></h2>
+    <button id="game-over-btn" class="game-over-btn">Play Again?</button>
+  </div>
+  
+  <div id="title-container" class="title-container">
+    <h1 class="title-header">Battleship</h1>
+    <p>Enter Your Name</p>
+    <input type="text" name="player-name-input" id="player-name-input" class="player-name-input" maxlength="12" min="1">
+    <button class="start-game" id="start-game">Start Game</button>
+  </div>
+
+  <div id="game-header" class="game-header">
+    <p id="player-name">Your Board</p>
+    <p id="enemy-name">Type in your coordinates to place a ship</p>
+  </div>
+  <div id='game-container' class="game-container">
+    <div id="player-gameboard">
+      <div class="numbers">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+      </div>
+      <div class="letters">
+        <p>A</p>
+        <p>B</p>
+        <p>C</p>
+        <p>D</p>
+        <p>E</p>
+        <p>F</p>
+        <p>G</p>
+        <p>H</p>
+      </div>
+      <div class="grid">
+        <div class="cell" data-coordinates="a1"></div>
+        <div class="cell" data-coordinates="a2"></div>
+        <div class="cell" data-coordinates="a3"></div>
+        <div class="cell" data-coordinates="a4"></div>
+        <div class="cell" data-coordinates="a5"></div>
+        <div class="cell" data-coordinates="a6"></div>
+        <div class="cell" data-coordinates="a7"></div>
+        <div class="cell" data-coordinates="a8"></div>
+        <div class="cell" data-coordinates="b1"></div>
+        <div class="cell" data-coordinates="b2"></div>
+        <div class="cell" data-coordinates="b3"></div>
+        <div class="cell" data-coordinates="b4"></div>
+        <div class="cell" data-coordinates="b5"></div>
+        <div class="cell" data-coordinates="b6"></div>
+        <div class="cell" data-coordinates="b7"></div>
+        <div class="cell" data-coordinates="b8"></div>
+        <div class="cell" data-coordinates="c1"></div>
+        <div class="cell" data-coordinates="c2"></div>
+        <div class="cell" data-coordinates="c3"></div>
+        <div class="cell" data-coordinates="c4"></div>
+        <div class="cell" data-coordinates="c5"></div>
+        <div class="cell" data-coordinates="c6"></div>
+        <div class="cell" data-coordinates="c7"></div>
+        <div class="cell" data-coordinates="c8"></div>
+        <div class="cell" data-coordinates="d1"></div>
+        <div class="cell" data-coordinates="d2"></div>
+        <div class="cell" data-coordinates="d3"></div>
+        <div class="cell" data-coordinates="d4"></div>
+        <div class="cell" data-coordinates="d5"></div>
+        <div class="cell" data-coordinates="d6"></div>
+        <div class="cell" data-coordinates="d7"></div>
+        <div class="cell" data-coordinates="d8"></div>
+        <div class="cell" data-coordinates="e1"></div>
+        <div class="cell" data-coordinates="e2"></div>
+        <div class="cell" data-coordinates="e3"></div>
+        <div class="cell" data-coordinates="e4"></div>
+        <div class="cell" data-coordinates="e5"></div>
+        <div class="cell" data-coordinates="e6"></div>
+        <div class="cell" data-coordinates="e7"></div>
+        <div class="cell" data-coordinates="e8"></div>
+        <div class="cell" data-coordinates="f1"></div>
+        <div class="cell" data-coordinates="f2"></div>
+        <div class="cell" data-coordinates="f3"></div>
+        <div class="cell" data-coordinates="f4"></div>
+        <div class="cell" data-coordinates="f5"></div>
+        <div class="cell" data-coordinates="f6"></div>
+        <div class="cell" data-coordinates="f7"></div>
+        <div class="cell" data-coordinates="f8"></div>
+        <div class="cell" data-coordinates="g1"></div>
+        <div class="cell" data-coordinates="g2"></div>
+        <div class="cell" data-coordinates="g3"></div>
+        <div class="cell" data-coordinates="g4"></div>
+        <div class="cell" data-coordinates="g5"></div>
+        <div class="cell" data-coordinates="g6"></div>
+        <div class="cell" data-coordinates="g7"></div>
+        <div class="cell" data-coordinates="g8"></div>
+        <div class="cell" data-coordinates="h1"></div>
+        <div class="cell" data-coordinates="h2"></div>
+        <div class="cell" data-coordinates="h3"></div>
+        <div class="cell" data-coordinates="h4"></div>
+        <div class="cell" data-coordinates="h5"></div>
+        <div class="cell" data-coordinates="h6"></div>
+        <div class="cell" data-coordinates="h7"></div>
+        <div class="cell" data-coordinates="h8"></div>
+      </div>
+    </div>
+    <div id="computer-gameboard">
+      <div class="numbers">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+      </div>
+      <div class="letters">
+        <p>A</p>
+        <p>B</p>
+        <p>C</p>
+        <p>D</p>
+        <p>E</p>
+        <p>F</p>
+        <p>G</p>
+        <p>H</p>
+      </div>
+      <div class="grid">
+        <div class="cell" data-coordinates="a1"></div>
+        <div class="cell" data-coordinates="a2"></div>
+        <div class="cell" data-coordinates="a3"></div>
+        <div class="cell" data-coordinates="a4"></div>
+        <div class="cell" data-coordinates="a5"></div>
+        <div class="cell" data-coordinates="a6"></div>
+        <div class="cell" data-coordinates="a7"></div>
+        <div class="cell" data-coordinates="a8"></div>
+        <div class="cell" data-coordinates="b1"></div>
+        <div class="cell" data-coordinates="b2"></div>
+        <div class="cell" data-coordinates="b3"></div>
+        <div class="cell" data-coordinates="b4"></div>
+        <div class="cell" data-coordinates="b5"></div>
+        <div class="cell" data-coordinates="b6"></div>
+        <div class="cell" data-coordinates="b7"></div>
+        <div class="cell" data-coordinates="b8"></div>
+        <div class="cell" data-coordinates="c1"></div>
+        <div class="cell" data-coordinates="c2"></div>
+        <div class="cell" data-coordinates="c3"></div>
+        <div class="cell" data-coordinates="c4"></div>
+        <div class="cell" data-coordinates="c5"></div>
+        <div class="cell" data-coordinates="c6"></div>
+        <div class="cell" data-coordinates="c7"></div>
+        <div class="cell" data-coordinates="c8"></div>
+        <div class="cell" data-coordinates="d1"></div>
+        <div class="cell" data-coordinates="d2"></div>
+        <div class="cell" data-coordinates="d3"></div>
+        <div class="cell" data-coordinates="d4"></div>
+        <div class="cell" data-coordinates="d5"></div>
+        <div class="cell" data-coordinates="d6"></div>
+        <div class="cell" data-coordinates="d7"></div>
+        <div class="cell" data-coordinates="d8"></div>
+        <div class="cell" data-coordinates="e1"></div>
+        <div class="cell" data-coordinates="e2"></div>
+        <div class="cell" data-coordinates="e3"></div>
+        <div class="cell" data-coordinates="e4"></div>
+        <div class="cell" data-coordinates="e5"></div>
+        <div class="cell" data-coordinates="e6"></div>
+        <div class="cell" data-coordinates="e7"></div>
+        <div class="cell" data-coordinates="e8"></div>
+        <div class="cell" data-coordinates="f1"></div>
+        <div class="cell" data-coordinates="f2"></div>
+        <div class="cell" data-coordinates="f3"></div>
+        <div class="cell" data-coordinates="f4"></div>
+        <div class="cell" data-coordinates="f5"></div>
+        <div class="cell" data-coordinates="f6"></div>
+        <div class="cell" data-coordinates="f7"></div>
+        <div class="cell" data-coordinates="f8"></div>
+        <div class="cell" data-coordinates="g1"></div>
+        <div class="cell" data-coordinates="g2"></div>
+        <div class="cell" data-coordinates="g3"></div>
+        <div class="cell" data-coordinates="g4"></div>
+        <div class="cell" data-coordinates="g5"></div>
+        <div class="cell" data-coordinates="g6"></div>
+        <div class="cell" data-coordinates="g7"></div>
+        <div class="cell" data-coordinates="g8"></div>
+        <div class="cell" data-coordinates="h1"></div>
+        <div class="cell" data-coordinates="h2"></div>
+        <div class="cell" data-coordinates="h3"></div>
+        <div class="cell" data-coordinates="h4"></div>
+        <div class="cell" data-coordinates="h5"></div>
+        <div class="cell" data-coordinates="h6"></div>
+        <div class="cell" data-coordinates="h7"></div>
+        <div class="cell" data-coordinates="h8"></div>
+      </div>
+    </div>
+    <div id="ship-placement-container" class="ship-placement-container">
+      <h2 id="place-ship-header">Place Your Ships</h2>
+      <h2 id="ship-name" class="ship-name">This is where the ship name would go</h2>
+      <input type="text" name="ship-placement-input" id="ship-placement-input" class="ship-placement-input" placeholder="Example: D3" maxlength="2" minlength="2">
+      <button id="place-ship-btn" class="place-ship-btn">Place</button>
+      <button id="rotate-btn" class="rotate-btn">Rotate</button>
+      <button id="start-round-btn" class="start-round-btn">Start Round</button>
+    </div>
+  </div>
+</body>
+</html>
+
